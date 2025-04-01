@@ -1,0 +1,28 @@
+---
+- name: Remount /tmp as read-only
+  become: yes
+  ansible.builtin.command: mount -o remount,ro /tmp
+  ignore_errors: true
+
+- name: Kill processes using /tmp
+  become: yes
+  ansible.builtin.command: fuser -k /tmp
+  ignore_errors: true
+  
+- name: remove /tmp from fstab
+  become: 'yes'
+  mount:
+    path: /tmp
+    state: absent
+  tags:
+    - fstab
+
+- name: remove floppy from fstab
+  become: 'yes'
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    state: absent
+    regexp: '^(.*)floppy(.*)$'
+  tags:
+    - fstab
+...
