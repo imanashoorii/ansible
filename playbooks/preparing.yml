@@ -4,5 +4,4 @@
   gather_facts: yes
   name: Preparing and Hardening Servers
   roles:
-  # preparing server and hardening
     - { role: roles/preparing, become: True, tags: preparing }

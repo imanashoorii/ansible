@@ -1,0 +1,15 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for docker
+# http proxy
+# http_proxy: http://x.x.x.x:yyyy
+
+# docker variables
+docker_group: docker
+
+docker:
+  # http_proxy: "{{ http_proxy }}"
+  # no_proxy: localhost,127.0.0.1,x.y.com
+  log_max_file: "5"
+  log_max_size: 100m
+  # registry_mirror: https://x.y.com
