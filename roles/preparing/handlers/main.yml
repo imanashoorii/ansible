@@ -24,9 +24,9 @@
 # https://github.com/ansible/ansible/issues/22171
 - name: restart auditd
   become: 'yes'
-  ansible.builtin.command: service auditd restart
-  args:
-    warn: false
+  ansible.builtin.service:
+    name: auditd
+    state: restarted
 
 - name: generate auditd
   become: 'yes'
