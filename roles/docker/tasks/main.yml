@@ -1,11 +1,16 @@
 #SPDX-License-Identifier: MIT-0
 ---
 - name: install docker
-  import_tasks: install-docker.yml
+  import_tasks: install.yml
   tags: install-docker
   when: ansible_os_family == "Debian"
 
 - name: config docker
-  import_tasks: config-docker.yml
+  import_tasks: config.yml
   tags: config-docker
+  when: ansible_os_family == "Debian"
+
+- name: create docker networks
+  import_tasks: networks.yml
+  tags: create-networks
   when: ansible_os_family == "Debian"

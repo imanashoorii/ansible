@@ -1,0 +1,12 @@
+---
+- name: Create web_net Docker network
+  become: yes
+  ansible.builtin.command:
+    cmd: docker network create web_net -o com.docker.network.bridge.name=web_net
+  when: add_docker_networks == true | default(false) | bool
+
+- name: Create app_net Docker network
+  become: yes
+  ansible.builtin.command:
+    cmd: docker network create app_net -o com.docker.network.bridge.name=app_net
+  when: add_docker_networks == true | default(false) | bool
